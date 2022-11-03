@@ -22,6 +22,10 @@ use App\Http\Controllers\ProductController;
 
 Route::resource('Products',ProductController::class);
 
+// get request for search :
+
+Route::get('/Products/search/{name}',[ProductController::class,'search']);
+
 // use simple routing system :
 /*
 Route::get('/Products', [ProductController::class, 'index']);
