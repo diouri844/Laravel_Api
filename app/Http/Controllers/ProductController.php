@@ -58,7 +58,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //get the product target :
+        $product = Product::find($id);
+        //update product body :
+        $product->update($request->all());
+        // return updated product :
+        return $product;
     }
 
     /**
@@ -69,6 +74,20 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //delete selected product with remove option :
+        // remove option return 1 if item removed
+        return Product::remove($id);
+    }
+
+    /**
+     * search for   specified resource from storage.
+     *
+     * @param string  $name
+     * @return \Illuminate\Http\Response
+     */
+    public function search($name)
+    {
+        //delete selected product with remove option :
+        return Product::where('name','like','%'.$name.'%')->get();
     }
 }
